@@ -1,0 +1,529 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://Fonts/Gugi-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Fonts/Gugi60.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scripts/Movable.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Game.gd" type="Script" id=4]
+[ext_resource path="res://Fonts/Gugi200.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Scripts/Globals.gd" type="Script" id=6]
+[ext_resource path="res://Sprites/DiffGreenButton.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/DiffBlueButton.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/YellowButton.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/DiffRedButton.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/PurpleButton.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/OrangeButton.png" type="Texture" id=12]
+[ext_resource path="res://Scripts/Emitters.gd" type="Script" id=13]
+[ext_resource path="res://Fonts/Gugi30.tres" type="DynamicFont" id=14]
+[ext_resource path="res://Scripts/Colors.gd" type="Script" id=15]
+[ext_resource path="res://Sprites/TopButton.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/Banner.png" type="Texture" id=17]
+[ext_resource path="res://Scripts/Score.gd" type="Script" id=18]
+[ext_resource path="res://Scripts/Arrows.gd" type="Script" id=19]
+[ext_resource path="res://Scripts/Area2D.gd" type="Script" id=20]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+font_data = ExtResource( 1 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 155.059, 10 )
+
+[sub_resource type="StreamTexture" id=3]
+flags = 4
+load_path = "res://.import/BlueButton.png-46496c175edae051a08b2039bf28c0a7.stex"
+
+[sub_resource type="StreamTexture" id=4]
+flags = 4
+load_path = "res://.import/GreenButton.png-cf18e2b314d07fc432d9b2047848931f.stex"
+
+[sub_resource type="StreamTexture" id=5]
+flags = 4
+load_path = "res://.import/RedButton.png-5f69975686c41e8e6b6c5b557fa718a4.stex"
+
+[node name="Game" type="Camera2D"]
+offset = Vector2( 288, 512 )
+script = ExtResource( 4 )
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+margin_right = 576.0
+margin_bottom = 1215.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UI" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="Title" type="Label" parent="UI"]
+margin_top = 250.0
+margin_right = 576.0
+margin_bottom = 331.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+text = "Simplifall"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuButtons" type="Node2D" parent="UI"]
+position = Vector2( 0, 500 )
+
+[node name="Start" type="Node2D" parent="UI/MenuButtons"]
+script = ExtResource( 3 )
+
+[node name="StartMenu" type="VBoxContainer" parent="UI/MenuButtons/Start"]
+margin_right = 576.0
+margin_bottom = 261.0
+custom_constants/separation = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="UI/MenuButtons/Start/StartMenu"]
+margin_right = 576.0
+margin_bottom = 67.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_pressed = Color( 0.886275, 0.886275, 0.886275, 1 )
+enabled_focus_mode = 0
+text = "Start"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="Button" parent="UI/MenuButtons/Start/StartMenu"]
+margin_top = 97.0
+margin_right = 576.0
+margin_bottom = 164.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_pressed = Color( 0.886275, 0.886275, 0.886275, 1 )
+enabled_focus_mode = 0
+text = "Settings"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Quit" type="Button" parent="UI/MenuButtons/Start/StartMenu"]
+margin_top = 194.0
+margin_right = 576.0
+margin_bottom = 261.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_pressed = Color( 0.886275, 0.886275, 0.886275, 1 )
+enabled_focus_mode = 0
+text = "Quit"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="move_tween" type="Tween" parent="UI/MenuButtons/Start"]
+
+[node name="Difficulty" type="Node2D" parent="UI/MenuButtons"]
+position = Vector2( 576, 0 )
+script = ExtResource( 3 )
+
+[node name="DifficultyMenu" type="VBoxContainer" parent="UI/MenuButtons/Difficulty"]
+margin_right = 576.0
+margin_bottom = 261.0
+custom_constants/separation = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Easy" type="Button" parent="UI/MenuButtons/Difficulty/DifficultyMenu"]
+margin_right = 576.0
+margin_bottom = 67.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_pressed = Color( 0.886275, 0.886275, 0.886275, 1 )
+enabled_focus_mode = 0
+text = "Easy"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Medium" type="Button" parent="UI/MenuButtons/Difficulty/DifficultyMenu"]
+margin_top = 97.0
+margin_right = 576.0
+margin_bottom = 164.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_pressed = Color( 0.886275, 0.886275, 0.886275, 1 )
+enabled_focus_mode = 0
+text = "Medium"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Hard" type="Button" parent="UI/MenuButtons/Difficulty/DifficultyMenu"]
+margin_top = 194.0
+margin_right = 576.0
+margin_bottom = 261.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_pressed = Color( 0.886275, 0.886275, 0.886275, 1 )
+enabled_focus_mode = 0
+text = "Hard"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="HSeparator" type="HSeparator" parent="UI/MenuButtons/Difficulty"]
+margin_left = 200.0
+margin_top = 300.0
+margin_right = 376.0
+margin_bottom = 310.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="UI/MenuButtons/Difficulty"]
+margin_top = 300.0
+margin_right = 576.0
+margin_bottom = 500.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_pressed = Color( 0.886275, 0.886275, 0.886275, 1 )
+enabled_focus_mode = 0
+text = "Back"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="move_tween" type="Tween" parent="UI/MenuButtons/Difficulty"]
+
+[node name="move_tween" type="Tween" parent="UI"]
+
+[node name="Emitters" type="Node2D" parent="."]
+position = Vector2( 0, -74.4372 )
+script = ExtResource( 13 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Emitters"]
+margin_right = 576.0
+margin_bottom = 40.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="Node2D" parent="Emitters/HBoxContainer"]
+position = Vector2( 104.471, 0 )
+
+[node name="Middle" type="Node2D" parent="Emitters/HBoxContainer"]
+position = Vector2( 285.622, 0 )
+
+[node name="Right" type="Node2D" parent="Emitters/HBoxContainer"]
+position = Vector2( 466.548, 0 )
+
+[node name="move_tween" type="Tween" parent="Emitters"]
+
+[node name="Timer" type="Timer" parent="Emitters"]
+
+[node name="Restart" type="Node2D" parent="."]
+position = Vector2( 576, 0 )
+script = ExtResource( 3 )
+
+[node name="Restart" type="Button" parent="Restart"]
+margin_left = -1.79858
+margin_top = 190.625
+margin_right = 577.201
+margin_bottom = 257.625
+focus_mode = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.839555, 0.839555, 0.839555, 1 )
+custom_colors/font_color_pressed = Color( 0.752941, 0.752941, 0.752941, 1 )
+enabled_focus_mode = 0
+text = "Try again?"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="move_tween" type="Tween" parent="Restart"]
+
+[node name="Score" type="Node2D" parent="."]
+position = Vector2( 0, -641.505 )
+script = ExtResource( 18 )
+
+[node name="Score" type="Label" parent="Score"]
+margin_top = 200.0
+margin_right = 576.0
+margin_bottom = 605.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.866667, 0.866667, 0.866667, 1 )
+text = "0
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HighScore" type="Label" parent="Score"]
+margin_left = 307.449
+margin_top = 10.5314
+margin_right = 486.449
+margin_bottom = 41.5314
+custom_fonts/font = ExtResource( 14 )
+custom_colors/font_color = Color( 0.831373, 0.831373, 0.831373, 1 )
+text = "High Score: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="Button" parent="Score"]
+margin_left = 17.666
+margin_top = 10.5314
+margin_right = 102.666
+margin_bottom = 41.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 14 )
+custom_colors/font_color = Color( 0.780392, 0.780392, 0.780392, 1 )
+custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.843137, 1 )
+custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.843137, 1 )
+enabled_focus_mode = 0
+text = "Back"
+flat = true
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="move_tween" type="Tween" parent="Score"]
+
+[node name="Buttons" type="Node2D" parent="."]
+position = Vector2( 0, 1177.28 )
+script = ExtResource( 3 )
+
+[node name="Background" type="Sprite" parent="Buttons"]
+texture = ExtResource( 17 )
+centered = false
+
+[node name="Area2D" type="Area2D" parent="Buttons/Background"]
+position = Vector2( 0, -5.39636 )
+script = ExtResource( 20 )
+areaType = "Barrier"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buttons/Background/Area2D"]
+position = Vector2( 287.66, 36.8427 )
+scale = Vector2( 1.86928, 3.45207 )
+shape = SubResource( 2 )
+
+[node name="Arrows" type="Node2D" parent="Buttons"]
+position = Vector2( 36.556, 60 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Buttons/Arrows"]
+margin_right = 498.0
+margin_bottom = 75.0
+custom_constants/separation = 45
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="TextureButton" parent="Buttons/Arrows/HBoxContainer"]
+margin_right = 136.0
+margin_bottom = 75.0
+texture_normal = ExtResource( 16 )
+script = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Middle" type="TextureButton" parent="Buttons/Arrows/HBoxContainer"]
+margin_left = 181.0
+margin_right = 317.0
+margin_bottom = 75.0
+texture_normal = ExtResource( 16 )
+script = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="TextureButton" parent="Buttons/Arrows/HBoxContainer"]
+margin_left = 362.0
+margin_right = 498.0
+margin_bottom = 75.0
+texture_normal = ExtResource( 16 )
+script = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Colors" type="Node2D" parent="Buttons"]
+position = Vector2( 17.666, 162.654 )
+
+[node name="GridContainer" type="GridContainer" parent="Buttons/Colors"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 536.0
+margin_bottom = 308.0
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blue" type="TextureButton" parent="Buttons/Colors/GridContainer"]
+margin_right = 176.0
+margin_bottom = 100.0
+texture_normal = SubResource( 3 )
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = "Blue"
+
+[node name="Green" type="TextureButton" parent="Buttons/Colors/GridContainer"]
+margin_left = 180.0
+margin_right = 356.0
+margin_bottom = 100.0
+texture_normal = SubResource( 4 )
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = "Green"
+
+[node name="Red" type="TextureButton" parent="Buttons/Colors/GridContainer"]
+margin_left = 360.0
+margin_right = 536.0
+margin_bottom = 100.0
+texture_normal = SubResource( 5 )
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = "Red"
+
+[node name="Orange" type="TextureButton" parent="Buttons/Colors/GridContainer"]
+margin_top = 104.0
+margin_right = 176.0
+margin_bottom = 204.0
+texture_normal = ExtResource( 12 )
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = "Orange"
+
+[node name="Purple" type="TextureButton" parent="Buttons/Colors/GridContainer"]
+margin_left = 180.0
+margin_top = 104.0
+margin_right = 356.0
+margin_bottom = 204.0
+texture_normal = ExtResource( 11 )
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = "Purple"
+
+[node name="Yellow" type="TextureButton" parent="Buttons/Colors/GridContainer"]
+margin_left = 360.0
+margin_top = 104.0
+margin_right = 536.0
+margin_bottom = 204.0
+texture_normal = ExtResource( 9 )
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = "Yellow"
+
+[node name="DiffRed" type="TextureButton" parent="Buttons/Colors/GridContainer"]
+margin_top = 208.0
+margin_right = 176.0
+margin_bottom = 308.0
+texture_normal = ExtResource( 10 )
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = "DiffRed"
+
+[node name="DiffBlue" type="TextureButton" parent="Buttons/Colors/GridContainer"]
+margin_left = 180.0
+margin_top = 208.0
+margin_right = 356.0
+margin_bottom = 308.0
+texture_normal = ExtResource( 8 )
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = "DiffBlue"
+
+[node name="DiffGreen" type="TextureButton" parent="Buttons/Colors/GridContainer"]
+margin_left = 360.0
+margin_top = 208.0
+margin_right = 536.0
+margin_bottom = 308.0
+texture_normal = ExtResource( 7 )
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = "DiffGreen"
+
+[node name="Background" type="Sprite" parent="Buttons/Colors"]
+position = Vector2( 3.13135, -194.15 )
+
+[node name="move_tween" type="Tween" parent="Buttons"]
+
+[node name="Globals" type="Node2D" parent="."]
+script = ExtResource( 6 )
+
+[node name="spawn_timer" type="Timer" parent="."]
+
+[node name="shoot_timer" type="Timer" parent="."]
+[connection signal="pressed" from="UI/MenuButtons/Start/StartMenu/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="UI/MenuButtons/Start/StartMenu/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="UI/MenuButtons/Difficulty/DifficultyMenu/Easy" to="." method="_on_Easy_pressed"]
+[connection signal="pressed" from="UI/MenuButtons/Difficulty/DifficultyMenu/Medium" to="." method="_on_Medium_pressed"]
+[connection signal="pressed" from="UI/MenuButtons/Difficulty/DifficultyMenu/Hard" to="." method="_on_Hard_pressed"]
+[connection signal="pressed" from="UI/MenuButtons/Difficulty/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="Restart/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="Score/Menu" to="." method="_on_Menu_pressed"]
+[connection signal="pressed" from="Buttons/Arrows/HBoxContainer/Left" to="Buttons/Arrows/HBoxContainer/Left" method="arrow_pressed"]
+[connection signal="pressed" from="Buttons/Arrows/HBoxContainer/Middle" to="Buttons/Arrows/HBoxContainer/Middle" method="arrow_pressed"]
+[connection signal="pressed" from="Buttons/Arrows/HBoxContainer/Right" to="Buttons/Arrows/HBoxContainer/Right" method="arrow_pressed"]
+[connection signal="pressed" from="Buttons/Colors/GridContainer/Blue" to="Buttons/Colors/GridContainer/Blue" method="change_color"]
+[connection signal="pressed" from="Buttons/Colors/GridContainer/Green" to="Buttons/Colors/GridContainer/Green" method="change_color"]
+[connection signal="pressed" from="Buttons/Colors/GridContainer/Red" to="Buttons/Colors/GridContainer/Red" method="change_color"]
+[connection signal="pressed" from="Buttons/Colors/GridContainer/Orange" to="Buttons/Colors/GridContainer/Orange" method="change_color"]
+[connection signal="pressed" from="Buttons/Colors/GridContainer/Purple" to="Buttons/Colors/GridContainer/Purple" method="change_color"]
+[connection signal="pressed" from="Buttons/Colors/GridContainer/Yellow" to="Buttons/Colors/GridContainer/Yellow" method="change_color"]
+[connection signal="pressed" from="Buttons/Colors/GridContainer/DiffRed" to="Buttons/Colors/GridContainer/DiffRed" method="change_color"]
+[connection signal="pressed" from="Buttons/Colors/GridContainer/DiffBlue" to="Buttons/Colors/GridContainer/DiffBlue" method="change_color"]
+[connection signal="pressed" from="Buttons/Colors/GridContainer/DiffGreen" to="Buttons/Colors/GridContainer/DiffGreen" method="change_color"]
+[connection signal="timeout" from="spawn_timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="shoot_timer" to="Buttons/Arrows/HBoxContainer/Left" method="_on_shoot_timer_timeout"]
